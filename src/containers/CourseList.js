@@ -37,11 +37,11 @@ class CourseList extends React.Component {
         this.setState({
           course: { title: event.target.value }
         });
+        console.log(event.target.value);
     }
 
     createCourse() {
-        // this.courseService.createCourse(this.state.course);
-        this.courseService
+            this.courseService
             .createCourse(this.state.course)
             .then(() => { this.findAllCourses(); });
     }
@@ -74,14 +74,19 @@ class CourseList extends React.Component {
             <h2>Course List</h2>
             <table className="table">
               <thead>
-                <tr><th>Title</th></tr>
                 <tr>
+                  <th>Add a New Course</th>
                   <th><input onChange={this.titleChanged}
                              className="form-control" id="titleFld"
-                             value="New Course Title"/></th>
+                             placeholder="New Course"/></th>
                   <th><button onClick={this.createCourse}
                               className="btn btn-primary">
                     Add</button></th>
+                </tr>
+                <tr>
+                <th>Title</th>
+                <th>Owned By</th>
+                <th>Last Modified</th>
                 </tr>
               </thead>
               <tbody>
