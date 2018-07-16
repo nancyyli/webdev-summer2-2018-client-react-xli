@@ -7,8 +7,9 @@ class CourseList extends React.Component {
         super();
         this.courseService = CourseService.instance;
         this.deleteCourse = this.deleteCourse.bind(this);
-        // this.titleChanged = this.titleChanged.bind(this);
-        // this.createCourse = this.createCourse.bind(this);
+        this.titleChanged = this.titleChanged.bind(this);
+        this.createCourse = this.createCourse.bind(this);
+        this.renderCourseRows = this.renderCourseRows.bind(this);
     }
 
     componentDidMount() {
@@ -25,20 +26,29 @@ class CourseList extends React.Component {
         this.courseService.deleteCourse(course);
     }
 
+    titleChanged(event) {
+        this.setState({
+          course: { title: event.target.value }
+        });
+    }
+
+    createCourse() {
+        this.courseService.createCourse(this.state.course);
+        // this.courseService
+        //     .createCourse(this.state.course)
+        //     .then(() => { this.findAllCourses(); });
+    }
+
     renderCourseRows() {
         let courses = null;
 
         if(this.state) {
-            console.log(this.state.courses.courses);
-            console.log(this);
           courses = this.state.courses.courses.map(
             function (course) {
-                console.log(this);
               return <CourseRow key={course.id}
                                 course={course}/>
             }
           )
-          console.log(courses);
         }
         return (
           courses
@@ -52,14 +62,14 @@ class CourseList extends React.Component {
             <table className="table">
               <thead>
                 <tr><th>Title</th></tr>
-                {/* <tr>
+                <tr>
                   <th><input onChange={this.titleChanged}
                              className="form-control" id="titleFld"
                              placeholder="cs101"/></th>
                   <th><button onClick={this.createCourse}
                               className="btn btn-primary">
                     Add</button></th>
-                </tr> */}
+                </tr>
               </thead>
               <tbody>
                 {this.renderCourseRows()}

@@ -15,7 +15,7 @@ class CourseService {
     }
 
     createCourse(course) {
-
+        console.log('create course');
     }
 
     deleteCourse(course) {

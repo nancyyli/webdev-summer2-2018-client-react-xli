@@ -12,7 +12,6 @@ class CourseRow extends React.Component {
       this.props.deleteCourse();
   }
   render() {
-      console.log(this.props.course.title);
     return(
       <tr className="list-group-item">
         <td>{this.props.course.title}</td>
