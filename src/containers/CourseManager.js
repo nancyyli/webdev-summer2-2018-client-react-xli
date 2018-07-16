@@ -5,15 +5,11 @@ export default class CourseManager
   extends Component {
   render() {
     return (
-      <Router>
-        <div className="container-fluid">
+        <div>
           <h1>Course Manager</h1>
 
-          <Route path="/courses"
-                 component={CourseList}>
-          </Route>
+          <CourseList/>
         </div>
-      </Router>
     )
   }
 }

@@ -1,8 +1,15 @@
 import React from 'react';
+import CourseList from '../containers/CourseList';
+
 
 class CourseRow extends React.Component {
   constructor(props) {
-    super(props)
+      super(props);
+      this.deleteCourse = this.deleteCourse.bind(this);
+  }
+
+  deleteCourse(course) {
+      this.props.deleteCourse();
   }
   render() {
     return(
@@ -10,9 +17,8 @@ class CourseRow extends React.Component {
         {this.props.title}
         {this.props.ownedBy}
         {this.props.lastModified}
-        <span className="pull-right">
-          <i style={{'margin-right': '5px'}} className="fa fa-trash"></i>
-          <i className="fa fa-pencil"></i>
+        <span onClick={this.deleteCourse} className="pull-right">
+          <i className="fa fa-trash"></i>
         </span>
       </li>
     )
