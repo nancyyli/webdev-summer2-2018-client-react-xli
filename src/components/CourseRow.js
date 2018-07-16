@@ -8,14 +8,15 @@ class CourseRow extends React.Component {
       this.deleteCourse = this.deleteCourse.bind(this);
   }
 
-  deleteCourse(course) {
-      this.props.deleteCourse();
+  deleteCourse() {
+    var courseId = this.props.course.id;
+    this.props.deleteCourse(courseId);
   }
   render() {
     return(
       <tr className="list-group-item">
         <td>{this.props.course.title}</td>
-        {/* {this.props.course.ownedBy} */}
+        <td>{this.props.course.ownedBy}</td>
         <td>{this.props.course.created}</td>
 
         <td>{this.props.course.modified}</td>

@@ -6,6 +6,7 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
+        this.renderCourseRow = this.renderCourseRow.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
@@ -17,13 +18,16 @@ class CourseList extends React.Component {
     }
 
     findAllCourses() {
-        var foundCourses = this.courseService
-          .findAllCourses();
-        this.setState({courses: foundCourses});
+        this.courseService
+        .findAllCourses()
+        .then((courses) => {
+          console.log(courses);
+          this.setState({courses: courses});
+        })
     }
 
-    deleteCourse(course) {
-        this.courseService.deleteCourse(course);
+    deleteCourse(courseId) {
+        this.courseService.deleteCourse(courseId).then(this.findAllCourses());
     }
 
     titleChanged(event) {
@@ -33,21 +37,27 @@ class CourseList extends React.Component {
     }
 
     createCourse() {
-        this.courseService.createCourse(this.state.course);
-        // this.courseService
-        //     .createCourse(this.state.course)
-        //     .then(() => { this.findAllCourses(); });
+        // this.courseService.createCourse(this.state.course);
+        this.courseService
+            .createCourse(this.state.course)
+            .then(() => { this.findAllCourses(); });
+    }
+
+    renderCourseRow(course) {
+        console.log('rending rows');
+        console.log(this);
+        return <CourseRow key={course.id}
+        course={course}/>
     }
 
     renderCourseRows() {
         let courses = null;
-
         if(this.state) {
-          courses = this.state.courses.courses.map(
+          courses = this.state.courses.map(
             function (course) {
-              return <CourseRow key={course.id}
+              return <CourseRow deleteCourse={this.deleteCourse} key={course.id}
                                 course={course}/>
-            }
+            }, this
           )
         }
         return (

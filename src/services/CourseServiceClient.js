@@ -1,4 +1,6 @@
 let _singleton = Symbol();
+const COURSE_API_URL =
+  'http://localhost:8080/api/course';
 
 
 class CourseService {
@@ -15,20 +17,30 @@ class CourseService {
     }
 
     createCourse(course) {
-        console.log('create course');
+        return fetch(COURSE_API_URL, {
+            method: 'POST',
+            body: JSON.stringify(course),
+            headers: {
+              'Content-Type': 'application/json'
+
+            }
+          }).then(function (response) {
+              var course = response.json();
+            return course;
+        })
     }
 
-    deleteCourse(course) {
-        console.log('clicked delete');
+    deleteCourse(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'delete'
+        });
     }
 
     findAllCourses() {
-        var text = '{ "courses" : [' +
-        '{ "id":"1" , "title":"Doe" , "created": "yesterday", "modified": "now"},' +
-        '{ "id":"2" , "title":"fdlgjd" , "created": "yesterday", "modified": "now"}]}';
-        var jsonText= JSON.parse(text);
-        return jsonText;
-
+        return fetch(COURSE_API_URL)
+        .then(function(response){
+          return response.json();
+        });
     }
 
     findCourseById(id) {
