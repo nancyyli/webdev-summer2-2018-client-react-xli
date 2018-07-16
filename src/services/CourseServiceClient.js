@@ -23,8 +23,11 @@ class CourseService {
     }
 
     findAllCourses() {
-        var oneCourse = '{id: 2, title: "test", created: "yesterday", modified: "now""}';
-        return oneCourse;
+        var text = '{ "courses" : [' +
+        '{ "id":"1" , "title":"Doe" , "created": "yesterday", "modified": "now"},' +
+        '{ "id":"2" , "title":"fdlgjd" , "created": "yesterday", "modified": "now"}]}';
+        var jsonText= JSON.parse(text);
+        return jsonText;
 
     }
 

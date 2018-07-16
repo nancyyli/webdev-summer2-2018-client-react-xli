@@ -12,15 +12,18 @@ class CourseRow extends React.Component {
       this.props.deleteCourse();
   }
   render() {
+      console.log(this.props.course.title);
     return(
-      <li className="list-group-item">
-        {this.props.title}
-        {this.props.ownedBy}
-        {this.props.lastModified}
-        <span onClick={this.deleteCourse} className="pull-right">
+      <tr className="list-group-item">
+        <td>{this.props.course.title}</td>
+        {/* {this.props.course.ownedBy} */}
+        <td>{this.props.course.created}</td>
+
+        <td>{this.props.course.modified}</td>
+        <td><span onClick={this.deleteCourse} className="pull-right">
           <i className="fa fa-trash"></i>
-        </span>
-      </li>
+        </span></td>
+      </tr>
     )
   }
 }
