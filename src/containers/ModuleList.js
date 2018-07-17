@@ -19,7 +19,8 @@ export default class ModuleList extends Component {
     };
     this.createModule = this.createModule.bind(this);
     this.titleChanged = this.titleChanged.bind(this);
-
+    this.deleteModule = this.deleteModule.bind(this);
+    this.renderListOfModules = this.renderListOfModules.bind(this);
     this.setCourseId = this.setCourseId.bind(this);
 
     this.moduleService = ModuleService.instance;
@@ -55,11 +56,18 @@ export default class ModuleList extends Component {
   titleChanged(event) {
     this.setState({module: {title: event.target.value}});
   }
+  deleteModule(moduleId) {
+    this.moduleService.deleteModule(moduleId).then(
+        () => {
+            this.findAllModulesForCourse(this.props.courseId);
+            this.renderListOfModules();
+        });
+  }  
   renderListOfModules() {
     let modules = this.state.modules.map(function(module){
-      return <ModuleListItem module={module}
+      return <ModuleListItem deleteModule={this.deleteModule} module={module}
                              key={module.id}/>
-    });
+    }, this);
     return modules;
   }
   render() {
