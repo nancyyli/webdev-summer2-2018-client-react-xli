@@ -1,15 +1,20 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import CourseList from "./CourseList";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 export default class CourseManager
   extends Component {
   render() {
     return (
-        <div>
-          <h1>Course Manager</h1>
+        <Router>
+            <div className="container-fluid">
+            <h1>Course Manager</h1>
 
-          <CourseList/>
-        </div>
+            <Route path="/courses"
+                    component={CourseList}>
+            </Route>
+            </div>
+        </Router>
     )
   }
 }
