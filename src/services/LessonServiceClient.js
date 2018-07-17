@@ -29,33 +29,35 @@ export default class LessonService {
     // })
   }
 
-  findAllModulesForCourse(courseId) {
-    console.log('finding all modules');
-    return fetch(
-      MODULE_API_URL
-        .replace('CID', courseId))
-      .then(function (response) {
-        return response.json();
-      })
+  findAllLessonssForModule(moduleId) {
+    console.log('finding all lessons for modules');
+    // return fetch(
+    //   MODULE_API_URL
+    //     .replace('CID', courseId))
+    //   .then(function (response) {
+    //     return response.json();
+    //   })
   }
 
-  createModule(courseId, module) {
-    return fetch(MODULE_API_URL.replace('CID', courseId),
-      {
-        body: JSON.stringify(module),
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST'
-      }).then(function (response)
-    { return response.json(); })
+  createLesson(courseId, moduleId, module) {
+      console.log('creating Lesson for module');
+    // return fetch(MODULE_API_URL.replace('CID', courseId),
+    //   {
+    //     body: JSON.stringify(module),
+    //     headers: { 'Content-Type': 'application/json' },
+    //     method: 'POST'
+    //   }).then(function (response)
+    // { return response.json(); })
   }
 
-  deleteModule(moduleId) {
-    return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId), {
-        method: 'delete'
-    });
+  deleteLesson(lessonId) {
+      console.log('deleting lesson');
+    // return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId), {
+    //     method: 'delete'
+    // });
   }
 
-  updateModule(moduleId) {
+  updateLesson(lessonId) {
 
   }
 
