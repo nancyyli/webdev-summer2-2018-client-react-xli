@@ -15,24 +15,23 @@ export default class ModuleService {
   }
 
   findAllModulesForCourse(courseId) {
-      console.log('finding all modules');
-    // return fetch(
-    //   MODULE_API_URL
-    //     .replace('CID', courseId))
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
+    console.log('finding all modules');
+    return fetch(
+      MODULE_API_URL
+        .replace('CID', courseId))
+      .then(function (response) {
+        return response.json();
+      })
   }
 
   createModule(courseId, module) {
-      console.log('creating module');
-    // return fetch(MODULE_API_URL.replace('CID', courseId),
-    //   {
-    //     body: JSON.stringify(module),
-    //     headers: { 'Content-Type': 'application/json' },
-    //     method: 'POST'
-    //   }).then(function (response)
-    // { return response.json(); })
+    return fetch(MODULE_API_URL.replace('CID', courseId),
+      {
+        body: JSON.stringify(module),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST'
+      }).then(function (response)
+    { return response.json(); })
   }
 
 }

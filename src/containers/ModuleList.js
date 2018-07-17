@@ -29,10 +29,9 @@ export default class ModuleList extends Component {
   }
 
   findAllModulesForCourse(courseId) {
-      this.moduleService.findAllModulesForCourse(courseId);
-    // this.moduleService
-    //   .findAllModulesForCourse(courseId)
-    //   .then((modules) => {this.setModules(modules)});
+    this.moduleService
+      .findAllModulesForCourse(courseId)
+      .then((modules) => {this.setModules(modules)});
   }
 
   setCourseId(courseId) {
@@ -51,6 +50,7 @@ export default class ModuleList extends Component {
   createModule() {
     this.moduleService
       .createModule(this.props.courseId, this.state.module)
+      .then(() => { this.findAllModulesForCourse(this.props.courseId); });
   }
   titleChanged(event) {
     this.setState({module: {title: event.target.value}});

@@ -47,8 +47,6 @@ class CourseList extends React.Component {
     }
 
     renderCourseRow(course) {
-        console.log('rending rows');
-        console.log(this);
         return <CourseRow key={course.id}
         course={course}/>
     }
