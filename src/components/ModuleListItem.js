@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/modules.css'
+import { Link } from 'react-router-dom'
+
 export default class ModuleListItem
   extends React.Component {
   constructor(props) {
@@ -32,7 +34,9 @@ export default class ModuleListItem
             <span className="confirm-btn" onClick={this.deleteModule}> <i className="fa fa-check"></i></span>
             <span className="cancel-btn" onClick={this.cancelDelete}> <i className="fa fa-times"></i></span>
         </div>
-        {this.props.module.title}
+        <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+          {this.props.module.title}
+        </Link>
 
         <span onClick={this.deleteConfirmation} className="float-right">
           <i className="fa fa-trash"></i>
