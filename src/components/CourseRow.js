@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseList from '../containers/CourseList';
+import { Link } from 'react-router-dom'
 
 
 class CourseRow extends React.Component {
@@ -15,7 +16,10 @@ class CourseRow extends React.Component {
   render() {
     return(
       <tr className="list-group-item">
-        <td>{this.props.course.title}</td>
+        <td>
+        <Link to={`/course/${this.props.course.id}`}>
+          {this.props.course.title}
+        </Link></td>
         <td>{this.props.course.ownedBy}</td>
         <td>{this.props.course.created}</td>
 

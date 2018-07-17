@@ -1,0 +1,8 @@
+.delete-confirmation {
+    color: red;
+    display: none;
+}
+
+.active {
+    display: block;
+}
