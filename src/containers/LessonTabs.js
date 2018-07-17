@@ -1,5 +1,5 @@
 import React from 'react'
-import ModuleListItem from '../components/ModuleListItem';
+import LessonTabItem from '../components/LessonTabItem'
 import LessonService from '../services/LessonServiceClient'
 
 export default class LessonTabs extends React.Component {
@@ -21,7 +21,7 @@ export default class LessonTabs extends React.Component {
         this.createLesson = this.createLesson.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
-        this.renderTabsOfLessons = this.TabsOfLessons.bind(this);
+        this.renderTabsOfLessons = this.renderTabsOfLessons.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.lessonService = LessonService.instance;
@@ -57,8 +57,7 @@ export default class LessonTabs extends React.Component {
       }
     
       createLesson() {
-        this.lessonService
-          .createLesson(this.props.courseId, this.props.module.id, this.state.module);
+        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson);
       }
 
       titleChanged(event) {
@@ -76,7 +75,7 @@ export default class LessonTabs extends React.Component {
 
       renderTabsOfLessons() {
         let lessons = this.state.lessons.map(function(lesson){
-          return <LessonTabItem lesson={lesson}
+          return <LessonTabItem deleteLesson={this.deleteLesson} lesson={lesson}
                                  key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} />
         }, this);
         return lessons;
@@ -86,7 +85,7 @@ export default class LessonTabs extends React.Component {
           <div>
               <input onChange={this.titleChanged}
                    value={this.state.lesson.title}
-                   placeholder="New Module"
+                   placeholder="New Lesson"
                    className="form-control"/>
             <button onClick={this.createLesson} className="btn btn-primary btn-block">
               <i className="fa fa-plus"></i>
@@ -94,10 +93,6 @@ export default class LessonTabs extends React.Component {
             <br/>
             <ul className="nav nav-tabs">
                 {this.renderTabsOfLessons()}
-                <li className="nav-item"><a className="nav-link active"
-                              href="#">Active Tab</a></li>
-                <li className="nav-item"><a className="nav-link"
-                              href="#">Another Tab</a></li>
             </ul>
           </div>
         );

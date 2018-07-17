@@ -29,7 +29,7 @@ export default class LessonService {
     // })
   }
 
-  findAllLessonssForModule(moduleId) {
+  findAllLessonsForModule(moduleId) {
     console.log('finding all lessons for modules');
     // return fetch(
     //   MODULE_API_URL
