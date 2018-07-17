@@ -16,6 +16,19 @@ export default class ModuleService {
     return this[_singleton]
   }
 
+  findAllModules() {
+    return fetch(MODULE_API_URL)
+    .then(function(response){
+    return response.json();
+    });
+  }
+
+  findModuleById(moduleId) {
+    return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId)).then(function(response) {
+        return response.json();
+    })
+  }
+
   findAllModulesForCourse(courseId) {
     console.log('finding all modules');
     return fetch(
@@ -40,6 +53,10 @@ export default class ModuleService {
     return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId), {
         method: 'delete'
     });
-}
+  }
+
+  updateModule(moduleId) {
+
+  }
 
 }
