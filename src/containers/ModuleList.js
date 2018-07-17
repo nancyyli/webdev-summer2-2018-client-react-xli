@@ -7,15 +7,8 @@ export default class ModuleList extends Component {
     super(props);
     this.state = {
       courseId: '',
-      module: { title: '' },
-      modules: [
-        {title: 'Module 1', id: 123},
-        {title: 'Module 2', id: 234},
-        {title: 'Module 3', id: 345},
-        {title: 'Module 4', id: 456},
-        {title: 'Module 5', id: 567},
-        {title: 'Module 6', id: 678}
-      ]
+      module: { title: 'New Module' },
+      modules: []
     };
     this.createModule = this.createModule.bind(this);
     this.titleChanged = this.titleChanged.bind(this);
@@ -75,7 +68,7 @@ export default class ModuleList extends Component {
       <div>
         <input onChange={this.titleChanged}
                value={this.state.module.title}
-               placeholder="title"
+               placeholder="New Module"
                className="form-control"/>
         <button onClick={this.createModule} className="btn btn-primary btn-block">
           <i className="fa fa-plus"></i>
