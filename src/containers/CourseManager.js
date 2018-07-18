@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CourseList from "./CourseList";
 import CourseEditor from "./CourseEditor";
+import ModuleEditor from "./ModuleEditor";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 export default class CourseManager
@@ -14,10 +15,14 @@ export default class CourseManager
             <Route path="/courses"
                 component={CourseList}>
             </Route>
-
+            <div className="row">
             <Route path="/course/:courseId"
                 component={CourseEditor}>
             </Route>
+
+            <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}>
+            </Route>
+            </div>
             </div>
         </Router>
     )

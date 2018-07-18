@@ -59,7 +59,7 @@ export default class ModuleList extends Component {
   renderListOfModules() {
     let modules = this.state.modules.map(function(module){
       return <ModuleListItem deleteModule={this.deleteModule} module={module}
-                             key={module.id}/>
+                             key={module.id} courseId={this.props.courseId} />
     }, this);
     return modules;
   }

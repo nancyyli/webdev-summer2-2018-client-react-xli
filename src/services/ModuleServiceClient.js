@@ -30,7 +30,6 @@ export default class ModuleService {
   }
 
   findAllModulesForCourse(courseId) {
-    console.log('finding all modules');
     return fetch(
       MODULE_API_URL
         .replace('CID', courseId))
