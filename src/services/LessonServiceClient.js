@@ -1,5 +1,7 @@
 const LESSON_API_URL =
   'http://localhost:8080/api/lesson';
+const LESSON_CREATE_URL = 
+'http://localhost:8080/api/course/courseId/module/moduleId/lesson';
 
 let _singleton = Symbol();
 export default class LessonService {
@@ -15,46 +17,39 @@ export default class LessonService {
   }
 
   findAllLessons() {
-      console.log('finding all lessons');
-    // return fetch(MODULE_API_URL)
-    // .then(function(response){
-    // return response.json();
-    // });
+    return fetch(LESSON_API_URL)
+    .then(function(response){
+    return response.json();
+    });
   }
 
   findLessonById(lessonId) {
-      console.log('finding lesson by id');
-    // return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId)).then(function(response) {
-    //     return response.json();
-    // })
+    return fetch(LESSON_API_URL + '/' + lessonId).then(function(response) {
+        return response.json();
+    })
   }
 
-  findAllLessonsForModule(moduleId) {
-    console.log('finding all lessons for modules');
-    // return fetch(
-    //   MODULE_API_URL
-    //     .replace('CID', courseId))
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
+  findAllLessonsForModule(courseId, moduleId) {
+    return fetch(LESSON_CREATE_URL.replace('courseId', courseId).replace('moduleId', moduleId))
+      .then(function (response) {
+        return response.json();
+      })
   }
 
-  createLesson(courseId, moduleId, module) {
-      console.log('creating Lesson for module');
-    // return fetch(MODULE_API_URL.replace('CID', courseId),
-    //   {
-    //     body: JSON.stringify(module),
-    //     headers: { 'Content-Type': 'application/json' },
-    //     method: 'POST'
-    //   }).then(function (response)
-    // { return response.json(); })
+  createLesson(courseId, moduleId, lesson) {
+    return fetch(LESSON_CREATE_URL.replace('courseId', courseId).replace('moduleId', moduleId),
+      {
+        body: JSON.stringify(lesson),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST'
+      }).then(function (response)
+    { return response.json(); })
   }
 
   deleteLesson(lessonId) {
-      console.log('deleting lesson');
-    // return fetch(MODULE_API_DELETE_URL.replace('MID', moduleId), {
-    //     method: 'delete'
-    // });
+    return fetch('http://localhost:8080/api/lesson/' + lessonId, {
+        method: 'delete'
+    });
   }
 
   updateLesson(lessonId) {

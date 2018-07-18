@@ -30,11 +30,10 @@ export default class LessonTabs extends React.Component {
         this.setState({lessons : lessons})
       }
     
-      findAllLessonsForModule(moduleId) {
-          this.lessonService.findAllLessonsForModule(moduleId);
-        // this.moduleService
-        //   .findAllModulesForCourse(courseId)
-        //   .then((modules) => {this.setModules(modules)});
+      findAllLessonsForModule(courseId, moduleId) {
+        this.lessonService
+          .findAllLessonsForModule(courseId, moduleId)
+          .then((lessons) => {this.setLessons(lessons)});
       }
     
       setCourseId(courseId) {
@@ -46,18 +45,22 @@ export default class LessonTabs extends React.Component {
       }
     
       componentDidMount() {
+        console.log(this.props.moduleId);
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
       }
     
       componentWillReceiveProps(newProps){
+          console.log('receiving');
+          console.log(newProps.moduleId);
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
-        this.findAllLessonsForModule(newProps.moduleId)
+        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId)
       }
     
       createLesson() {
-        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson);
+        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
+        .then(() => { this.findAllLessonsForModule(this.props.courseId, this.props.moduleId); });;
       }
 
       titleChanged(event) {
@@ -65,12 +68,12 @@ export default class LessonTabs extends React.Component {
       }
 
       deleteLesson(lessonId) {
-          this.lessonService.deleteLesson(lessonId);
-        // this.moduleService.deleteModule(moduleId).then(
-        //     () => {
-        //         this.findAllModulesForCourse(this.props.courseId);
-        //         this.renderListOfModules();
-        //     });
+          console.log('deleting in lesson');
+        this.lessonService.deleteLesson(lessonId).then(
+            () => {
+                this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
+                this.renderTabsOfLessons();
+            });
       }  
 
       renderTabsOfLessons() {
