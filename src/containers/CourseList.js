@@ -1,5 +1,6 @@
 import React from 'react';
 import CourseRow from "../components/CourseRow";
+import '../css/courselist.css'
 import CourseService from "../services/CourseServiceClient";
 
 class CourseList extends React.Component {
@@ -7,7 +8,8 @@ class CourseList extends React.Component {
         super();
         this.state = {
           courseId: '',
-          course: { title: 'New Course' },
+          course: { title: 'New Course', 
+                    ownedBy: 'New User'},
           courses: []
         };
         this.courseService = CourseService.instance;
@@ -73,22 +75,23 @@ class CourseList extends React.Component {
     render() {
         return (
             <div>
+              
             <h2>Course List</h2>
-            <table className="table">
+            <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Add a New Course</th>
-                  <th><input onChange={this.titleChanged}
+                  <th scope="col">Add a New Course</th>
+                  <th scope="col"><input onChange={this.titleChanged}
                              className="form-control" id="titleFld"
                              placeholder="New Course"/></th>
-                  <th><button onClick={this.createCourse}
+                  <th scope="col"><button onClick={this.createCourse}
                               className="btn btn-primary">
                     Add</button></th>
                 </tr>
                 <tr>
-                <th>Title</th>
-                <th>Owned By</th>
-                <th>Last Modified</th>
+                  <th className="title-head" scope="col">Title</th>
+                  <th className="owned-head" scope="col">Owned By</th>
+                  <th scope="col">Last Modified</th>
                 </tr>
               </thead>
               <tbody>
