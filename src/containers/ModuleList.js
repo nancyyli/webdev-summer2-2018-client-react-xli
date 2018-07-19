@@ -7,15 +7,16 @@ export default class ModuleList extends Component {
     super(props);
     this.state = {
       courseId: '',
+      selectedModuleIndex : 0,
       module: { title: 'New Module' },
-      modules: []
+      modules: [],
     };
     this.createModule = this.createModule.bind(this);
     this.titleChanged = this.titleChanged.bind(this);
     this.deleteModule = this.deleteModule.bind(this);
     this.renderListOfModules = this.renderListOfModules.bind(this);
     this.setCourseId = this.setCourseId.bind(this);
-
+    this.selectModule = this.selectModule.bind(this);
     this.moduleService = ModuleService.instance;
   }
   setModules(modules) {
@@ -33,12 +34,19 @@ export default class ModuleList extends Component {
   }
 
   componentDidMount() {
-    this.setCourseId(this.props.courseId);
+      this.setCourseId(this.props.courseId);
   }
 
+
   componentWillReceiveProps(newProps){
-    this.setCourseId(newProps.courseId);
-    this.findAllModulesForCourse(newProps.courseId)
+    if (newProps.courseId != this.state.courseId) {
+      this.setCourseId(newProps.courseId);
+      this.findAllModulesForCourse(newProps.courseId);
+    }
+  }
+
+  selectModule(index) {
+    this.setState({selectedModuleIndex : index});
   }
 
   createModule() {
@@ -57,15 +65,19 @@ export default class ModuleList extends Component {
         });
   }  
   renderListOfModules() {
-    let modules = this.state.modules.map(function(module){
-      return <ModuleListItem deleteModule={this.deleteModule} module={module}
+    let modules = this.state.modules.map((module, i) => {
+      console.log(this.state.selectedModuleIndex);
+      return (<ModuleListItem  selectedModule={this.state.selectedModuleIndex} onClick={() => this.selectModule(module.id)} deleteModule={this.deleteModule} module={module}
                              key={module.id} courseId={this.props.courseId} />
-    }, this);
+    )});
     return modules;
   }
+
+  //onClick={() => this.selectModule(module.id)}
   render() {
     return (
       <div>
+             Module:   {this.selectedModule}
         <input onChange={this.titleChanged}
                value={this.state.module.title}
                placeholder="New Module"

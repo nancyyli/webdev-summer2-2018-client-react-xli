@@ -25,7 +25,6 @@ export default class ModuleEditor
   }
 
   selectModule(moduleId) {
-      console.log(moduleId);
     this.setState({moduleId: moduleId});
   }
 
@@ -35,7 +34,7 @@ export default class ModuleEditor
 
   render() { return(
     <div className="col-8">
-        <h2>Editing Module: {this.state.moduleId}</h2>
+        <h2>Editing Module: {this.props.match.params.moduleId}</h2>
             <LessonTabs moduleId={this.props.match.params.moduleId} courseId={this.state.courseId}/>
     </div>
     
