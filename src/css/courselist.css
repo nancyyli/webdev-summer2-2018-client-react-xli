@@ -1,0 +1,35 @@
+tbody {
+    width: 250%;
+    display: block;
+}
+
+.table .owned-by
+ {
+    border: none;
+}
+
+.table .modified {
+    border: none;
+    width: 350px;
+}
+
+.table .title {
+    border: none;
+    width: 530px;
+}
+
+.table .owned-by {
+    width: 413px;
+}
+
+.table .delete {
+    border: none;
+}
+
+.table .title-head {
+    width: 40%;
+}
+
+.table .owned-head {
+    width: 30%;
+}

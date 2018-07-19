@@ -3,15 +3,16 @@ import CourseList from "./CourseList";
 import CourseEditor from "./CourseEditor";
 import ModuleEditor from "./ModuleEditor";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class CourseManager
   extends Component {
   render() {
     return (
+      <div>
         <Router>
             <div className="container-fluid">
-            <h1>Course Manager</h1>
-
+          
             <Route path="/courses"
                 component={CourseList}>
             </Route>
@@ -23,8 +24,15 @@ export default class CourseManager
             <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}>
             </Route>
             </div>
+
+            <button className="btn btn-primary"> 
+              <Link to={`/courses`}>Courses 
+              </Link>
+            </button>
             </div>
         </Router>
+        </div>
+
     )
   }
 }
