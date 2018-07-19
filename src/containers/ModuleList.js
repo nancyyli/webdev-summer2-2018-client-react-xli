@@ -73,7 +73,6 @@ export default class ModuleList extends Component {
     return modules;
   }
 
-  //onClick={() => this.selectModule(module.id)}
   render() {
     return (
       <div>
