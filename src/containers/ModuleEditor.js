@@ -20,7 +20,6 @@ export default class ModuleEditor
   }
 
   componentWillReceiveProps(newProps){
-      console.log('newprops?');
     this.selectModule(this.props.match.params.moduleId);
     this.setCourse(this.props.match.params.courseId);
   }
@@ -37,7 +36,7 @@ export default class ModuleEditor
   render() { return(
     <div className="col-8">
         <h2>Editing Module: {this.state.moduleId}</h2>
-            <LessonTabs moduleId={this.state.moduleId} courseId={this.state.courseId}/>
+            <LessonTabs moduleId={this.props.match.params.moduleId} courseId={this.state.courseId}/>
     </div>
     
   );}}
