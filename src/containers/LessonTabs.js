@@ -8,15 +8,9 @@ export default class LessonTabs extends React.Component {
         this.state = {
           courseId: '',
           moduleId: '',
+          selectedLessonIndex : 0,
           lesson: { title: 'New Lesson' },
-          lessons: [
-            {title: 'Lesson 1', id: 123},
-            {title: 'Lesson 2', id: 234},
-            {title: 'Lesson 3', id: 345},
-            {title: 'Lesson 4', id: 456},
-            {title: 'Lesson 5', id: 567},
-            {title: 'Lesson 6', id: 678}
-          ]
+          lessons: []
         };
         this.createLesson = this.createLesson.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
@@ -45,14 +39,11 @@ export default class LessonTabs extends React.Component {
       }
     
       componentDidMount() {
-        console.log(this.props.moduleId);
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
       }
     
       componentWillReceiveProps(newProps){
-          console.log('receiving');
-          console.log(newProps.moduleId);
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
         this.findAllLessonsForModule(newProps.courseId, newProps.moduleId)
@@ -68,17 +59,20 @@ export default class LessonTabs extends React.Component {
       }
 
       deleteLesson(lessonId) {
-          console.log('deleting in lesson');
         this.lessonService.deleteLesson(lessonId).then(
             () => {
                 this.findAllLessonsForModule(this.props.courseId, this.props.moduleId);
                 this.renderTabsOfLessons();
             });
       }  
+      
+      selectLesson(index) {
+        this.setState({selectedLessonIndex : index});
+      }
 
       renderTabsOfLessons() {
         let lessons = this.state.lessons.map(function(lesson){
-          return <LessonTabItem deleteLesson={this.deleteLesson} lesson={lesson}
+          return <LessonTabItem selectedLesson={this.state.selectedLessonIndex} onClick={() => this.selectLesson(lesson.id)} deleteLesson={this.deleteLesson} lesson={lesson}
                                  key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} />
         }, this);
         return lessons;
