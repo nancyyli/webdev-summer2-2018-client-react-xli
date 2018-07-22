@@ -47,7 +47,7 @@ export default class LessonService {
   }
 
   deleteLesson(lessonId) {
-    return fetch('http://localhost:8080/api/lesson/' + lessonId, {
+    return fetch(LESSON_API_URL + '/' + lessonId, {
         method: 'delete'
     });
   }

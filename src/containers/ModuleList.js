@@ -66,7 +66,6 @@ export default class ModuleList extends Component {
   }  
   renderListOfModules() {
     let modules = this.state.modules.map((module, i) => {
-      console.log(this.state.selectedModuleIndex);
       return (<ModuleListItem  selectedModule={this.state.selectedModuleIndex} onClick={() => this.selectModule(module.id)} deleteModule={this.deleteModule} module={module}
                              key={module.id} courseId={this.props.courseId} />
     )});

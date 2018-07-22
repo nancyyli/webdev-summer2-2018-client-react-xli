@@ -35,7 +35,7 @@ export default class LessonTabs extends React.Component {
       }
 
       setModuleId(moduleId) {
-        this.setState({moduleId: moduleId});
+        this.setState({moduleId: moduleId}); 
       }
     
       componentDidMount() {
