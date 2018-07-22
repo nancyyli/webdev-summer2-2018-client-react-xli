@@ -3,6 +3,15 @@
     display: none;
 }
 
+
 .active {
     display: block;
+}
+
+.create-lesson {
+    margin-top: 10px;
+}
+
+.delete-lesson {
+    padding: 5px;
 }

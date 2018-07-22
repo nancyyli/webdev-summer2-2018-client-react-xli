@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/modules.css'
 import { Link } from 'react-router-dom'
 
 export default class ModuleListItem
@@ -60,10 +59,10 @@ export default class ModuleListItem
         </Link>
 
         <span onClick={this.deleteConfirmation} className="float-right">
-          <i className="fa fa-trash"></i>
+          <i className="fa fa-trash delete-module"></i>
         </span>
         <span className="float-right">
-            <i className="fa fa-pencil"></i>
+            <i className="fa fa-pencil edit-module"></i>
         </span>
       </li>
     );

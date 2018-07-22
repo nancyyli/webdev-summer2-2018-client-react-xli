@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleServiceClient'
+import '../css/modules.css'
 
 export default class ModuleList extends Component {
   constructor(props) {
@@ -80,7 +81,7 @@ export default class ModuleList extends Component {
                value={this.state.module.title}
                placeholder="New Module"
                className="form-control"/>
-        <button onClick={this.createModule} className="btn btn-primary btn-block">
+        <button onClick={this.createModule} className="btn btn-primary btn-block create-module">
           <i className="fa fa-plus"></i>
         </button>
         <br/>

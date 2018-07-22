@@ -8,10 +8,34 @@
 }
 
 .selected {
-    background-color: #007bff;
+    background-color: #cfd8dc;
     color: black;
 }
 
 a {
     color: black !important;
+}
+
+.courses-link a {
+    color: white !important;
+}
+
+.courses-link {
+    margin-top: 20px;
+}
+
+.create-module {
+    margin-top: 10px;
+}
+
+.delete-module {
+    padding: 5px;
+}
+
+.edit-module {
+    padding: 5px;
+}
+
+.editing-module {
+    margin-bottom: 32px;
 }

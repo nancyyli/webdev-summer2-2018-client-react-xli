@@ -3,6 +3,14 @@ tbody {
     display: block;
 }
 
+h1 {
+    padding: 20px 15px;
+}
+
+h2 {
+    padding-bottom: 20px;
+}
+
 .table .owned-by
  {
     border: none;
