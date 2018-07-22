@@ -48,7 +48,7 @@ export default class ModuleEditor
 
   render() { return(
     <div className="col-8">
-        <h2 className="editing-module">Editing Module: {this.findModuleById(this.props.match.params.moduleId)}</h2>
+        <h2 className="editing-module">Editing Module: {this.props.match.params.moduleId}</h2>
             <LessonTabs moduleId={this.props.match.params.moduleId} courseId={this.state.courseId}/>
     </div>
     
