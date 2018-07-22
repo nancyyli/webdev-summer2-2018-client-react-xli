@@ -25,7 +25,7 @@ export default class CourseManager
             </Route>
             </div>
 
-            <button className="btn btn-primary"> 
+            <button className="btn btn-primary courses-link"> 
               <Link to={`/courses`}>Courses 
               </Link>
             </button>
