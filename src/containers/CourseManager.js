@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CourseList from "./CourseList";
 import CourseEditor from "./CourseEditor";
 import ModuleEditor from "./ModuleEditor";
+import LessonEditor from "./LessonEditor";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -21,8 +22,14 @@ export default class CourseManager
                 component={CourseEditor}>
             </Route>
 
-            <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}>
-            </Route>
+               <div className="col-8">
+              <Route path="/course/:courseId/module/:moduleId" component={ModuleEditor}>
+              </Route>
+              
+              <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={LessonEditor}>
+              </Route>
+              </div>
+
             </div>
 
             <button className="btn btn-primary courses-link"> 
