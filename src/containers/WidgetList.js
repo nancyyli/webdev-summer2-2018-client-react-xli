@@ -10,32 +10,32 @@ class WidgetList extends Component {
     this.props.findAllWidgets()
   }
   render() {
+              //TODO add lesson id later 
     return(
-      <div>
-        <h3>There are {this.props.widgets.length} widgets</h3>
+      <div className="widget-box">
+        <h3 className="widgets-title">There are {this.props.widgets.length} widgets</h3>
         <div className="preview-toggle">
-            Preview
-            <label className="switch" onClick={this.props.preview}> 
-                <input type="checkbox"/>
-                <span className="slider round"></span>
+            <div className="preview-text">Preview</div>
+            <label className="switch" > 
+                <input type="checkbox" data-toggle="toggle"/>
+                <span className="slider round" onClick={this.props.preview}></span>
             </label>
         </div>
-        <button className="btn btn-primary preview-btn" onClick={this.props.preview}>
-          Preview
-        </button>
 
         <button className="btn btn-success save-btn" hidden={this.props.previewMode} onClick={this.props.save}>
           Save
         </button>
 
-        <ul>
+        <ul className="widgets-list">
           {this.props.widgets.map(widget => (
             <WidgetContainer widget={widget}
                              preview={this.props.previewMode}
                              key={widget.id}/>
           ))}
         </ul>
-        <button onClick={this.props.addWidget}>Add widget</button>
+        <button onClick={this.props.addWidget} className="btn btn-primary add-widget-btn">
+          <i className="fa fa-plus"></i>
+        </button>
       </div>
     )
   }

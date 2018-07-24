@@ -70,9 +70,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
           ...state.widgets,
           {
             id: state.widgets.length + 1,
-            text: 'New Widget',
-            widgetType: 'Paragraph',
-            size: '2'
+            text: 'New Heading Text',
+            widgetType: 'Heading',
+            size: '2',
+            name: 'New Widget Name'
           }
         ]
       }

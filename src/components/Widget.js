@@ -8,23 +8,36 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged}) => {
   let inputElem
   return(
     <div>
-      <div hidden={preview}>
-        <h2> Heading {widget.size}</h2>
-          <input onChange={() => headingTextChanged(widget.id, inputElem.value)}
+      <div className="heading-widget-container" hidden={preview}>
+        {/* <h2> Heading {widget.size}</h2> */}
+        <div className="heading-widget-input-container form-group">
+        <label for="heading-widget-input">Heading Text</label>
+          <input className="form-control" id="heading-widget-input" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                  value={widget.text}
-                 ref={node => inputElem = node}/>
-          <select onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                 ref={node => inputElem = node} placeholder="Enter Heading Text"/>
+        </div>
+        <div className="heading-widget-size-container form-group">
+        <label for="heading-widget-size">Heading Size</label>
+          <select className="form-control" id="heading-widget-size" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
                   value={widget.size}
                   ref={node => selectElem = node}>
             <option value="1">Heading 1</option>
             <option value="2">Heading 2</option>
             <option value="3">Heading 3</option>
           </select>
+        </div>
+        <div className="heading-widget-name-container form-group">
+          <label for="heading-widget-name"> Widget Name </label>
+            <input className="form-control" id="heading-widget-name" value={widget.name} ref={node => inputElem = node}/>
+        </div>
           <h3>Preview</h3>
+
       </div>
-      {widget.size == 1 && <h1>{widget.text}</h1>}
-      {widget.size == 2 && <h2>{widget.text}</h2>}
-      {widget.size == 3 && <h3>{widget.text}</h3>}
+      <div className="preview-heading">
+        {widget.size == 1 && <h1>{widget.text}</h1>}
+        {widget.size == 2 && <h2>{widget.text}</h2>}
+        {widget.size == 3 && <h3>{widget.text}</h3>}
+      </div>
     </div>
   )
 }
@@ -42,11 +55,11 @@ const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Head
 const Widget = ({widget, preview, dispatch}) => {
   let selectElement
   return(
-    <li>
+    <li className="widget-item" >
       <div hidden={preview}>
-      {widget.id} {widget.widgetType}
+        <h3 className="widget-id-text"> Widget Id: {widget.id} Type: {widget.widgetType} </h3>
 
-      <select value={widget.widgetType} onChange={e =>
+      <select className="form-control col-2 select-widget" value={widget.widgetType} onChange={e =>
           dispatch({
             type: 'SELECT_WIDGET_TYPE',
             id: widget.id,
@@ -56,9 +69,11 @@ const Widget = ({widget, preview, dispatch}) => {
         <option>Heading</option>
       </select>
 
-      <button onClick={e => (
+      <button className="btn btn-danger delete-widget-btn" onClick={e => (
         dispatch({type: DELETE_WIDGET, id: widget.id})
-      )}>Delete</button>
+      )}>
+          <i className="fa fa-trash delete-module"></i>
+        </button>
       </div>
       <div>
         {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
