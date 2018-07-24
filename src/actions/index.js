@@ -22,11 +22,18 @@ export const widgetNameChanged = (dispatch, widgetId, newName) => {
 }
 
 export const findAllWidgets = dispatch => {
-  fetch('http://localhost:8080/api/widget')
-    .then(response => (response.json()))
-    .then(widgets => dispatch({
-      type: constants.FIND_ALL_WIDGETS,
-      widgets: widgets }))
+    let initialState = {
+        widgets: [
+          {text: 'Item 1', size: 1, id: 0, widgetType: 'Heading', name: 'name 1'},
+          {text: 'Item 2', size: 1, id: 1, widgetType: 'List', name: 'name 2'}
+        ]
+    }
+    dispatch({type: constants.FIND_ALL_WIDGETS, widgets: initialState.widgets})
+//   fetch('http://localhost:8080/api/widget')
+//     .then(response => (response.json()))
+//     .then(widgets => dispatch({
+//       type: constants.FIND_ALL_WIDGETS,
+//       widgets: widgets }))
 }
 
 export const addWidget = dispatch => (

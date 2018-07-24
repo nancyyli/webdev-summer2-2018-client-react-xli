@@ -61,7 +61,7 @@ const Widget = ({widget, preview, dispatch}) => {
   return(
     <li className="widget-item" >
       <div hidden={preview}>
-        <h3 className="widget-id-text"> Widget Id: {widget.id} Type: {widget.widgetType} </h3>
+        <h3 className="widget-id-text"> Widget Name: {widget.name} Type: {widget.widgetType} </h3>
 
       <select className="form-control col-2 select-widget" value={widget.widgetType} onChange={e =>
           dispatch({
