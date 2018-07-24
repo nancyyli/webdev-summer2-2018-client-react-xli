@@ -20,7 +20,6 @@ export default class CourseEditor extends React.Component {
 
     render() {
         let store = createStore(widgetReducer);
-        console.log('in here');
       return (
         <Provider store={store}>
              <App/>

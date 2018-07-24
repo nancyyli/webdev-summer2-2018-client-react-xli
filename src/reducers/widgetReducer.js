@@ -13,6 +13,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
     case constants.HEADING_TEXT_CHANGED:
       return {
         widgets: state.widgets.map(widget => {
+            console.log(widget);
           if(widget.id === action.id) {
             widget.text = action.text
           }
@@ -29,9 +30,18 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
           return Object.assign({}, widget)
         })
       }
+    
+      case constants.WIDGET_NAME_CHANGED:
+        return {
+            widgets: state.widgets.map(widget => {
+                if (widget.id === action.id) {
+                    widget.name = action.name
+                }
+                return Object.assign({}, widget)
+            })
+        }
 
     case constants.SELECT_WIDGET_TYPE:
-      console.log(action);
       let newState = {
         widgets: state.widgets.filter((widget) => {
           if(widget.id === action.id) {
