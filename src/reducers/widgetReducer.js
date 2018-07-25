@@ -56,15 +56,14 @@ export const widgetReducer = (state = {}, action) => {
       return JSON.parse(JSON.stringify(newState))
 
     case constants.SAVE:
-    console.log(state);
-      fetch('http://localhost:8080/api/lesson/' + state.lessonId +'/widget', {
-        method: 'post',
-        body: JSON.stringify(state.widgets[0]),
-        headers: {
-          'content-type': 'application/json'}
+      state.widgets.map(widget => {
+            fetch('http://localhost:8080/api/lesson/' + state.lessonId +'/widget', {
+                method: 'post',
+                body: JSON.stringify(widget),
+                headers: {
+                  'content-type': 'application/json'}
+              })
       })
-
-
       return state
 
     case constants.FIND_ALL_WIDGETS:
@@ -79,19 +78,22 @@ export const widgetReducer = (state = {}, action) => {
           widget.id !== action.id
         ))
       }
+
     case constants.ADD_WIDGET:
-      return {
-        widgets: [
-          ...state.widgets,
-          {
-            id: state.widgets.length + 1,
+        newState = Object.assign({}, state)
+        newWidgets = [
+            ...state.widgets,
+            {
+            id: 0,
             text: 'New Heading Text',
             widgetType: 'Heading',
             size: '2',
             name: 'New Widget Name'
-          }
+            }
         ]
-      }
+        newState.widgets = newWidgets
+        return newState
+
     default:
       return state
   }

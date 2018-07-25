@@ -10,10 +10,6 @@ class WidgetList extends Component {
     this.props.findAllWidgets(this.props.lessonId);
   }
   render() {
-      console.log(this.props.lessonId);
-    //   console.log('lessonId');
-    //   console.log(this.props.lessonId);
-              //TODO add lesson id later 
     return(
       <div className="widget-box">
         <h3 className="widgets-title">There are {this.props.widgets.length} widgets</h3>
