@@ -17,9 +17,12 @@ import App from './WidgetList'
 // )
 
 export default class CourseEditor extends React.Component {
+    constructor(props) {
+        super(props)
+      }
 
     render() {
-        let store = createStore(widgetReducer);
+        let store = createStore(widgetReducer, {lessonId: this.props.match.params.lessonId, widgets: [], preview: false});
       return (
         <Provider store={store}>
              <App/>

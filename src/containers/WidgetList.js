@@ -7,9 +7,12 @@ import '../css/widget.css'
 class WidgetList extends Component {
   constructor(props) {
     super(props)
-    this.props.findAllWidgets()
+    this.props.findAllWidgets(this.props.lessonId);
   }
   render() {
+      console.log(this.props.lessonId);
+    //   console.log('lessonId');
+    //   console.log(this.props.lessonId);
               //TODO add lesson id later 
     return(
       <div className="widget-box">
@@ -42,12 +45,13 @@ class WidgetList extends Component {
 }
 
 const stateToPropertiesMapper = (state) => ({
+  lessonId: state.lessonId,
   widgets: state.widgets,
   previewMode: state.preview
 })
 const dispatcherToPropsMapper
   = dispatch => ({
-  findAllWidgets: () => actions.findAllWidgets(dispatch),
+  findAllWidgets: (lessonId) => actions.findAllWidgets(dispatch, lessonId),
   addWidget: () => actions.addWidget(dispatch),
   save: () => actions.save(dispatch),
   preview: () => actions.preview(dispatch)

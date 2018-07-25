@@ -1,7 +1,13 @@
+// const MODULE_API_URL =
+//   'https://webdev-summer2-xli.herokuapp.com/api/course/CID/module';
+// const MODULE_API_DELETE_URL =
+//   'https://webdev-summer2-xli.herokuapp.com/api/module/MID';
+
 const MODULE_API_URL =
-  'https://webdev-summer2-xli.herokuapp.com/api/course/CID/module';
+  'http://localhost:8080/api/course/CID/module';
 const MODULE_API_DELETE_URL =
-  'https://webdev-summer2-xli.herokuapp.com/api/module/MID';
+  'http://localhost:8080/api/module/MID';
+
 
 let _singleton = Symbol();
 export default class ModuleService {

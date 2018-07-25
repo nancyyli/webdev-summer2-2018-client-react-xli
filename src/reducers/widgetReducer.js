@@ -1,7 +1,8 @@
 import * as constants from "../constants/index"
 
-export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
-  let newState
+export const widgetReducer = (state = {}, action) => {
+  let newState;
+  let newWidgets;
   switch (action.type) {
 
     case constants.PREVIEW:
@@ -11,35 +12,37 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
       }
 
     case constants.HEADING_TEXT_CHANGED:
-      return {
-        widgets: state.widgets.map(widget => {
-            console.log(widget);
-          if(widget.id === action.id) {
-            widget.text = action.text
-          }
-          return Object.assign({}, widget)
-        })
-      }
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if(widget.id === action.id) {
+              widget.text = action.text
+            }
+            return Object.assign({}, widget)
+        })  
+        newState.widgets = newWidgets
+        return newState
 
     case constants.HEADING_SIZE_CHANGED:
-      return {
-        widgets: state.widgets.map(widget => {
-          if(widget.id === action.id) {
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if(widget.id === action.id) {
             widget.size = action.size
-          }
-          return Object.assign({}, widget)
-        })
-      }
+            }
+            return Object.assign({}, widget)
+        })  
+        newState.widgets = newWidgets
+        return newState
     
       case constants.WIDGET_NAME_CHANGED:
-        return {
-            widgets: state.widgets.map(widget => {
-                if (widget.id === action.id) {
-                    widget.name = action.name
-                }
-                return Object.assign({}, widget)
-            })
-        }
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if(widget.id === action.id) {
+                widget.name = action.name
+            }
+            return Object.assign({}, widget)
+        })  
+        newState.widgets = newWidgets
+        return newState
 
     case constants.SELECT_WIDGET_TYPE:
       let newState = {
@@ -53,21 +56,23 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
       return JSON.parse(JSON.stringify(newState))
 
     case constants.SAVE:
-
-
-      fetch('http://localhost:8080/api/widget/save', {
+    console.log(state);
+      fetch('http://localhost:8080/api/lesson/' + state.lessonId +'/widget', {
         method: 'post',
-        body: JSON.stringify(state.widgets),
+        body: JSON.stringify(state.widgets[0]),
         headers: {
           'content-type': 'application/json'}
       })
 
 
       return state
+
     case constants.FIND_ALL_WIDGETS:
       newState = Object.assign({}, state)
       newState.widgets = action.widgets
       return newState
+
+
     case constants.DELETE_WIDGET:
       return {
         widgets: state.widgets.filter(widget => (
