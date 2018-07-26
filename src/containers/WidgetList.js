@@ -29,7 +29,8 @@ class WidgetList extends Component {
           {this.props.widgets.map(widget => (
             <WidgetContainer widget={widget}
                              preview={this.props.previewMode}
-                             key={widget.id}/>
+                             key={widget.id}
+                             lessonId={this.props.lessonId}/>
           ))}
         </ul>
         <button onClick={this.props.addWidget} className="btn btn-primary add-widget-btn">

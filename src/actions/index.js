@@ -29,6 +29,15 @@ export const findAllWidgets = (dispatch, lessonId) => {
       widgets: widgets }))
 }
 
+export const deleteWidget = (dispatch, widgetId, lessonId) => {
+    fetch('http://localhost:8080/api/widget/' + widgetId, {
+        method: 'delete'
+    });
+    dispatch({
+        type: constants.DELETE_WIDGET,
+        widgetId: widgetId
+    })
+}
 export const addWidget = dispatch => (
   dispatch({type: constants.ADD_WIDGET})
 )

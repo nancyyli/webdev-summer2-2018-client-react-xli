@@ -67,24 +67,24 @@ export const widgetReducer = (state = {}, action) => {
       return state
 
     case constants.FIND_ALL_WIDGETS:
-      newState = Object.assign({}, state)
-      newState.widgets = action.widgets
-      return newState
-
+        newState = Object.assign({}, state)
+        newState.widgets = action.widgets
+        return newState
 
     case constants.DELETE_WIDGET:
-      return {
-        widgets: state.widgets.filter(widget => (
-          widget.id !== action.id
-        ))
-      }
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.filter(widget => (
+            widget.id !== action.widgetId
+            ))
+        newState.widgets = newWidgets;
+        return newState;
 
     case constants.ADD_WIDGET:
         newState = Object.assign({}, state)
         newWidgets = [
             ...state.widgets,
             {
-            id: 0,
+            id: state.widgets.length - 200,
             text: 'New Heading Text',
             widgetType: 'Heading',
             size: '2',
