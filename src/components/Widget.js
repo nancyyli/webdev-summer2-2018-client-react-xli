@@ -5,6 +5,7 @@ import * as actions from '../actions'
 import HeadingContainer from '../components/HeadingWidget'
 import ParagraphContainer from '../components/ParagraphWidget'
 import LinkContainer from '../components/LinkWidget'
+import ImageContainer from '../components/ImageWidget'
 
 const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidgetType}) => {
   let selectElement
@@ -17,6 +18,7 @@ const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidget
         <option>Heading</option>
         <option>Paragraph</option>
         <option>Link</option>
+        <option>Image</option>
       </select>
 
       <button className="btn btn-danger delete-widget-btn" onClick={() => deleteWidget(widget.id, lessonId)}>
@@ -27,6 +29,7 @@ const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidget
         {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
         {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
         {widget.widgetType === 'Link' && <LinkContainer widget={widget}/>}
+        {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}
       </div>
     </li>
   )

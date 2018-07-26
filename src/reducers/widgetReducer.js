@@ -32,7 +32,18 @@ export const widgetReducer = (state = {}, action) => {
         })
         newState.widgets = newWidgets
         return newState
-        
+
+    case constants.SRC_TEXT_CHANGED:
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if (widget.id === action.id) {
+                widget.src = action.src
+            }
+            return Object.assign({}, widget)
+        })
+        newState.widgets = newWidgets
+        return newState
+
     case constants.HEADING_SIZE_CHANGED:
         newState = Object.assign({}, state)
         newWidgets = state.widgets.map(widget => {
@@ -64,6 +75,7 @@ export const widgetReducer = (state = {}, action) => {
             return Object.assign({}, widget)
           })
           newState.widgets = newWidgets
+          console.log(newState);
           return newState
         
     //   let newState = {

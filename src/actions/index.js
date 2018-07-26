@@ -20,6 +20,15 @@ export const hrefTextChanged = (dispatch, widgetId, newHref) => {
         href: newHref})
 }
 
+export const srcTextChanged = (dispatch, widgetId, newSrc) => {
+    console.log('dfs');
+    dispatch({
+        type: constants.SRC_TEXT_CHANGED,
+        id: widgetId,
+        src: newSrc})
+}
+
+
 export const widgetNameChanged = (dispatch, widgetId, newName) => {
     dispatch({
         type: constants.WIDGET_NAME_CHANGED,
