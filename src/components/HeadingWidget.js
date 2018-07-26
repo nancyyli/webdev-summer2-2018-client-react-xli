@@ -10,7 +10,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
     let nameElem
     return(
       <div>
-        <div className="heading-widget-container" hidden={preview}>
+        <div className="widget-container" hidden={preview}>
           {/* <h2> Heading {widget.size}</h2> */}
           <div className="heading-widget-input-container form-group">
           <label htmlFor="heading-widget-input">Heading Text</label>
@@ -35,7 +35,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
             <h3>Preview</h3>
   
         </div>
-        <div className="preview-heading">
+        <div className="preview">
           {widget.size == 1 && <h1>{widget.text}</h1>}
           {widget.size == 2 && <h2>{widget.text}</h2>}
           {widget.size == 3 && <h3>{widget.text}</h3>}

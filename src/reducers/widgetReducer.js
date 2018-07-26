@@ -45,15 +45,25 @@ export const widgetReducer = (state = {}, action) => {
         return newState
 
     case constants.SELECT_WIDGET_TYPE:
-      let newState = {
-        widgets: state.widgets.filter((widget) => {
-          if(widget.id === action.id) {
-            widget.widgetType = action.widgetType
-          }
-          return true;
-        })
-      }
-      return JSON.parse(JSON.stringify(newState))
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map((widget) => {
+            if(widget.id === action.id) {
+              widget.widgetType = action.widgetType
+            }
+            return Object.assign({}, widget)
+          })
+          newState.widgets = newWidgets
+          return newState
+        
+    //   let newState = {
+    //     widgets: state.widgets.filter((widget) => {
+    //       if(widget.id === action.id) {
+    //         widget.widgetType = action.widgetType
+    //       }
+    //       return true;
+    //     })
+    //   }
+    //   return JSON.parse(JSON.stringify(newState))
 
     case constants.SAVE:
       state.widgets.map(widget => {
@@ -85,7 +95,7 @@ export const widgetReducer = (state = {}, action) => {
             ...state.widgets,
             {
             id: state.widgets.length - 200,
-            text: 'New Heading Text',
+            text: 'New Text',
             widgetType: 'Heading',
             size: '2',
             name: 'New Widget Name'

@@ -30,7 +30,7 @@
     margin-top: 20px;
 }
 
-.heading-widget-container {
+.widget-container {
     padding: 20px;
 }
 .widget-item {
@@ -52,15 +52,19 @@
     font-weight: bold;
 }
 
-.preview-heading {
+.preview {
     padding-left: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 20px;
 }
 
-.widgets-title,
-.widget-id-text {
+.widgets-title {
     padding: 20px 20px 0 20px;
     display: inline-block;
+}
+
+.widget-id-text {
+    padding: 20px 20px 0 20px;
+    display: block;
 }
 
 .widgets-list {

@@ -21,6 +21,13 @@ export const widgetNameChanged = (dispatch, widgetId, newName) => {
     })
 }
 
+export const selectWidgetType = (dispatch, widgetId, newType) => {
+    dispatch({
+        type: constants.SELECT_WIDGET_TYPE,
+        id: widgetId,
+        widgetType: newType
+      })
+}
 export const findAllWidgets = (dispatch, lessonId) => {
   fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget')
     .then(response => (response.json()))
