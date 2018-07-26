@@ -1,8 +1,8 @@
 import * as constants from "../constants/index"
 
-export const headingTextChanged = (dispatch, widgetId, newText) => (
+export const textChanged = (dispatch, widgetId, newText) => (
   dispatch({
-    type: constants.HEADING_TEXT_CHANGED,
+    type: constants.TEXT_CHANGED,
     id: widgetId,
     text: newText})
 )
@@ -12,6 +12,13 @@ export const headingSizeChanged = (dispatch, widgetId, newSize) => (
     id: widgetId,
     size: newSize})
 )
+
+export const hrefTextChanged = (dispatch, widgetId, newHref) => {
+    dispatch({
+        type: constants.LINK_TEXT_CHANGED,
+        id: widgetId,
+        href: newHref})
+}
 
 export const widgetNameChanged = (dispatch, widgetId, newName) => {
     dispatch({

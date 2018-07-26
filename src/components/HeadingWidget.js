@@ -4,7 +4,7 @@ import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 
 
-const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widgetNameChanged}) => {
+const Heading = ({widget, preview, textChanged, headingSizeChanged, widgetNameChanged}) => {
     let selectElem
     let inputElem
     let nameElem
@@ -14,7 +14,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
           {/* <h2> Heading {widget.size}</h2> */}
           <div className="heading-widget-input-container form-group">
           <label htmlFor="heading-widget-input">Heading Text</label>
-            <input className="form-control" id="heading-widget-input" onChange={() => headingTextChanged(widget.id, inputElem.value)}
+            <input className="form-control" id="heading-widget-input" onChange={() => textChanged(widget.id, inputElem.value)}
                    value={widget.text}
                    ref={node => inputElem = node} placeholder="Enter Heading Text"/>
           </div>
@@ -44,8 +44,8 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, widge
     )
   }
   const dispatchToPropsMapper = dispatch => ({
-    headingTextChanged: (widgetId, newText) =>
-      actions.headingTextChanged(dispatch, widgetId, newText),
+    textChanged: (widgetId, newText) =>
+      actions.textChanged(dispatch, widgetId, newText),
     headingSizeChanged: (widgetId, newSize) =>
       actions.headingSizeChanged(dispatch, widgetId, newSize),
     widgetNameChanged: (widgetId, newName) =>

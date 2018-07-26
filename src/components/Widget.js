@@ -4,6 +4,7 @@ import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 import HeadingContainer from '../components/HeadingWidget'
 import ParagraphContainer from '../components/ParagraphWidget'
+import LinkContainer from '../components/LinkWidget'
 
 const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidgetType}) => {
   let selectElement
@@ -15,6 +16,7 @@ const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidget
       <select className="form-control col-2 select-widget" value={widget.widgetType} onChange={() => selectWidgetType(widget.id, selectElement.value)} ref={node => selectElement = node}>
         <option>Heading</option>
         <option>Paragraph</option>
+        <option>Link</option>
       </select>
 
       <button className="btn btn-danger delete-widget-btn" onClick={() => deleteWidget(widget.id, lessonId)}>
@@ -24,6 +26,7 @@ const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidget
       <div>
         {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
         {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
+        {widget.widgetType === 'Link' && <LinkContainer widget={widget}/>}
       </div>
     </li>
   )

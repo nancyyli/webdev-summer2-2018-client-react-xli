@@ -30,7 +30,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
   }
   const dispatchToPropsMapper = dispatch => ({
     paragraphTextChanged: (widgetId, newText) =>
-      actions.headingTextChanged(dispatch, widgetId, newText),
+      actions.textChanged(dispatch, widgetId, newText),
     widgetNameChanged: (widgetId, newName) =>
       actions.widgetNameChanged(dispatch, widgetId, newName)
   

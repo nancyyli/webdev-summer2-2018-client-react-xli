@@ -11,7 +11,7 @@ export const widgetReducer = (state = {}, action) => {
         preview: !state.preview
       }
 
-    case constants.HEADING_TEXT_CHANGED:
+    case constants.TEXT_CHANGED:
         newState = Object.assign({}, state)
         newWidgets = state.widgets.map(widget => {
             if(widget.id === action.id) {
@@ -22,6 +22,17 @@ export const widgetReducer = (state = {}, action) => {
         newState.widgets = newWidgets
         return newState
 
+    case constants.LINK_TEXT_CHANGED:
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if (widget.id === action.id) {
+                widget.href = action.href
+            }
+            return Object.assign({}, widget)
+        })
+        newState.widgets = newWidgets
+        return newState
+        
     case constants.HEADING_SIZE_CHANGED:
         newState = Object.assign({}, state)
         newWidgets = state.widgets.map(widget => {
