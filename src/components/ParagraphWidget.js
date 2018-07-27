@@ -11,9 +11,9 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
         <div className="widget-container" hidden={preview}>
           <div className="paragraph-widget-input-container form-group">
           <label htmlFor="paragraph-widget-input">Paragraph Text</label>
-            <input className="form-control" id="paragraph-widget-input" onChange={() => paragraphTextChanged(widget.id, inputElem.value)}
+            <textarea className="form-control" id="paragraph-widget-input" onChange={() => paragraphTextChanged(widget.id, inputElem.value)}
                    value={widget.text}
-                   ref={node => inputElem = node} placeholder="Enter Paragraph Text"/>
+                   ref={node => inputElem = node} placeholder="Paragraph Text"></textarea>
           </div>
           <div className="widget-name-container form-group">
             <label htmlFor="paragraph-widget-name"> Widget Name </label>

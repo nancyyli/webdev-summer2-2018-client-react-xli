@@ -14,13 +14,13 @@ const Link = ({widget, preview, textChanged, hrefTextChanged, widgetNameChanged}
           <label htmlFor="link-widget-input">Link Text</label>
             <input className="form-control" id="link-widget-input" onChange={() => textChanged(widget.id, inputElem.value)}
                    value={widget.text}
-                   ref={node => inputElem = node} placeholder="Enter Link Text"/>
+                   ref={node => inputElem = node} placeholder="Link Text"/>
           </div>
           
           <div className="link-href-container form-group">
           <label htmlFor="link-href-input"> URL </label>
             <input className="form-control" id="link-href-input" onChange={() => hrefTextChanged(widget.id, linkElem.value)} value={widget.href || ''}
-                    ref={node => linkElem = node} placeholder="Enter URL"/>
+                    ref={node => linkElem = node} placeholder="Link URL"/>
           </div>
 
           <div className="widget-name-container form-group">

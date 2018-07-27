@@ -7,7 +7,13 @@ import '../css/widget.css'
 class WidgetList extends Component {
   constructor(props) {
     super(props)
-    this.props.findAllWidgets(this.props.lessonId);
+    this.props.findAllWidgets(this.props.match.params.lessonId);
+  }
+
+  componentWillReceiveProps(newProps) {
+      if (this.props.match.params.lessonId != newProps.match.params.lessonId) {
+        this.props.findAllWidgets(newProps.match.params.lessonId);
+      }
   }
   render() {
     return(
@@ -21,7 +27,7 @@ class WidgetList extends Component {
             </label>
         </div>
 
-        <button className="btn btn-success save-btn" hidden={this.props.previewMode} onClick={this.props.save}>
+        <button className="btn btn-success save-btn" hidden={this.props.previewMode} onClick={() => this.props.save(this.props.match.params.lessonId)}>
           Save
         </button>
 
@@ -30,7 +36,7 @@ class WidgetList extends Component {
             <WidgetContainer widget={widget}
                              preview={this.props.previewMode}
                              key={widget.id}
-                             lessonId={this.props.lessonId}/>
+                             lessonId={this.props.match.params.lessonId}/>
           ))}
         </ul>
         <button onClick={this.props.addWidget} className="btn btn-primary add-widget-btn">
@@ -50,11 +56,11 @@ const dispatcherToPropsMapper
   = dispatch => ({
   findAllWidgets: (lessonId) => actions.findAllWidgets(dispatch, lessonId),
   addWidget: () => actions.addWidget(dispatch),
-  save: () => actions.save(dispatch),
+  save: (lessonId) => actions.save(dispatch, lessonId),
   preview: () => actions.preview(dispatch)
 })
-const App = connect(
+const WidgetListContainer = connect(
   stateToPropertiesMapper,
   dispatcherToPropsMapper)(WidgetList)
 
-export default App
+export default WidgetListContainer

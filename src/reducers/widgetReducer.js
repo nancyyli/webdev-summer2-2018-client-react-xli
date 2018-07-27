@@ -100,20 +100,22 @@ export const widgetReducer = (state = {}, action) => {
           return newState
 
     case constants.SAVE:
-      state.widgets.map(widget => {
-            fetch('http://localhost:8080/api/lesson/' + state.lessonId +'/widget', {
+        newState = Object.assign({}, state)
+        state.widgets.map(widget => {
+            fetch('http://localhost:8080/api/lesson/' + action.lessonId +'/widget', {
                 method: 'post',
                 body: JSON.stringify(widget),
                 headers: {
                   'content-type': 'application/json'}
               })
       })
-      return state
+        newState.widgets = state.widgets;
+
+      return newState
 
     case constants.FIND_ALL_WIDGETS:
         newState = Object.assign({}, state)
         newState.widgets = action.widgets
-        console.log(newState);
         return newState
 
     case constants.DELETE_WIDGET:
@@ -132,7 +134,7 @@ export const widgetReducer = (state = {}, action) => {
             id: state.widgets.length - 200,
             text: 'New Text',
             widgetType: 'Heading',
-            size: '2',
+            size: '1',
             name: 'New Widget Name',
             listType: 'Ordered',
             listItem: 'Sample List Item'
