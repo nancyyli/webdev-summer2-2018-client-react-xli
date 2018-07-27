@@ -55,7 +55,29 @@ export const widgetReducer = (state = {}, action) => {
         newState.widgets = newWidgets
         return newState
     
-      case constants.WIDGET_NAME_CHANGED:
+    case constants.LIST_ITEMS_CHANGED:
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if(widget.id === action.id) {
+            widget.listItem = action.listItem
+            }
+            return Object.assign({}, widget)
+        })  
+        newState.widgets = newWidgets
+        return newState
+
+    case constants.LIST_TYPE_CHANGED:
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if(widget.id === action.id) {
+            widget.listType = action.listType
+            }
+            return Object.assign({}, widget)
+        })  
+        newState.widgets = newWidgets
+        return newState
+    
+    case constants.WIDGET_NAME_CHANGED:
         newState = Object.assign({}, state)
         newWidgets = state.widgets.map(widget => {
             if(widget.id === action.id) {
@@ -75,18 +97,7 @@ export const widgetReducer = (state = {}, action) => {
             return Object.assign({}, widget)
           })
           newState.widgets = newWidgets
-          console.log(newState);
           return newState
-        
-    //   let newState = {
-    //     widgets: state.widgets.filter((widget) => {
-    //       if(widget.id === action.id) {
-    //         widget.widgetType = action.widgetType
-    //       }
-    //       return true;
-    //     })
-    //   }
-    //   return JSON.parse(JSON.stringify(newState))
 
     case constants.SAVE:
       state.widgets.map(widget => {
@@ -102,6 +113,7 @@ export const widgetReducer = (state = {}, action) => {
     case constants.FIND_ALL_WIDGETS:
         newState = Object.assign({}, state)
         newState.widgets = action.widgets
+        console.log(newState);
         return newState
 
     case constants.DELETE_WIDGET:
@@ -121,7 +133,9 @@ export const widgetReducer = (state = {}, action) => {
             text: 'New Text',
             widgetType: 'Heading',
             size: '2',
-            name: 'New Widget Name'
+            name: 'New Widget Name',
+            listType: 'Ordered',
+            listItem: 'Sample List Item'
             }
         ]
         newState.widgets = newWidgets

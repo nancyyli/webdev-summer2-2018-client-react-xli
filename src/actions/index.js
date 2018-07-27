@@ -21,13 +21,25 @@ export const hrefTextChanged = (dispatch, widgetId, newHref) => {
 }
 
 export const srcTextChanged = (dispatch, widgetId, newSrc) => {
-    console.log('dfs');
     dispatch({
         type: constants.SRC_TEXT_CHANGED,
         id: widgetId,
         src: newSrc})
 }
 
+export const listItemsChanged = (dispatch, widgetId, newListItems) => (
+    dispatch({
+      type: constants.LIST_ITEMS_CHANGED,
+      id: widgetId,
+      listItem: newListItems})
+)
+
+export const listTypeChanged = (dispatch, widgetId, newListType) => (
+    dispatch({
+      type: constants.LIST_TYPE_CHANGED,
+      id: widgetId,
+      listType: newListType})
+)
 
 export const widgetNameChanged = (dispatch, widgetId, newName) => {
     dispatch({
