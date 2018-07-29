@@ -53,14 +53,14 @@ export default class LessonTabItem extends React.Component {
             <span className="confirm-btn" onClick={this.deleteLesson}> <i className="fa fa-check"></i></span>
             <span className="cancel-btn" onClick={this.cancelDelete}> <i className="fa fa-times"></i></span>
             </div>
-              <li className="nav-item"> 
-                <a className={'nav-link ' + this.state.selected} href="#">
+            <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}/widgets`}>
+              <li className={'nav-link nav-item ' + this.state.selected}> 
                     {this.props.lesson.title}
                     <span onClick={this.deleteConfirmation}>
                      <i className="fa fa-trash delete-lesson"></i>
                     </span>
-                </a>
             </li>
+            </Link>
         </div>
     );
   }
