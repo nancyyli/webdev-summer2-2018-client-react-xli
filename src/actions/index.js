@@ -73,10 +73,20 @@ export const deleteWidget = (dispatch, widgetId, lessonId) => {
         widgetId: widgetId
     })
 }
+
+export const sortOrderChanged = (dispatch, widgetId, sortOrder, direction) => {
+    dispatch({
+        type: constants.SORT_ORDER_CHANGED,
+        widgetId: widgetId,
+        sortOrder: sortOrder,
+        direction: direction
+    })
+}
+
 export const addWidget = dispatch => (
   dispatch({type: constants.ADD_WIDGET})
 )
-export const save = (dispatch, lessonId) => (
+export const save = (dispatch, lessonId, sortOrder) => (
   dispatch({
       type: constants.SAVE,
       lessonId: lessonId})

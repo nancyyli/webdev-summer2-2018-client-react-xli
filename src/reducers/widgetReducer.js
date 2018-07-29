@@ -88,6 +88,25 @@ export const widgetReducer = (state = {}, action) => {
         newState.widgets = newWidgets
         return newState
 
+    case constants.SORT_ORDER_CHANGED:
+        newState = Object.assign({}, state)
+        newWidgets = state.widgets.map(widget => {
+            if (widget.sortOrder === action.sortOrder) {
+                if (action.direction === "up") {
+                    widget.sortOrder += 1;
+                }
+                if (action.direction === "down") {
+                    widget.sortOrder -= 1;
+                }
+            }
+            if(widget.id === action.widgetId) {
+                widget.sortOrder = action.sortOrder
+            }
+            return Object.assign({}, widget)
+        })
+        newState.widgets = newWidgets
+        return newState
+        
     case constants.SELECT_WIDGET_TYPE:
         newState = Object.assign({}, state)
         newWidgets = state.widgets.map((widget) => {
@@ -116,6 +135,8 @@ export const widgetReducer = (state = {}, action) => {
     case constants.FIND_ALL_WIDGETS:
         newState = Object.assign({}, state)
         newState.widgets = action.widgets
+        newState.widgets.sort(function(a, b) {
+                return a.sortOrder - b.sortOrder; })
         return newState
 
     case constants.DELETE_WIDGET:
@@ -133,6 +154,7 @@ export const widgetReducer = (state = {}, action) => {
             {
             id: state.widgets.length - 200,
             text: 'New Text',
+            sortOrder: state.widgets.length,
             widgetType: 'Heading',
             size: '1',
             name: 'New Widget Name',

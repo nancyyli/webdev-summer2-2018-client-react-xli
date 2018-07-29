@@ -16,6 +16,9 @@ class WidgetList extends Component {
       }
   }
   render() {
+    this.props.widgets.sort(function(a, b) {
+        return a.sortOrder - b.sortOrder;
+    });
     return(
       <div className="widget-box">
         <h3 className="widgets-title">There are {this.props.widgets.length} widgets</h3>
@@ -36,7 +39,8 @@ class WidgetList extends Component {
             <WidgetContainer widget={widget}
                              preview={this.props.previewMode}
                              key={widget.id}
-                             lessonId={this.props.match.params.lessonId}/>
+                             lessonId={this.props.match.params.lessonId}
+                             widgetListLength={this.props.widgets.length}/>
           ))}
         </ul>
         <button onClick={this.props.addWidget} className="btn btn-primary add-widget-btn">

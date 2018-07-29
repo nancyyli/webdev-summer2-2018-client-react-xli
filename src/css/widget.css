@@ -11,6 +11,17 @@
     padding-right: 20px;
 }
 
+.sort-down-btn {
+    float: right;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.sort-up-btn {
+    float: right;
+    margin-left: 5px;
+    margin-top: 10px;
+}
 
 .save-btn {
     margin-top: 20px;
