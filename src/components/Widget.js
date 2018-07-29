@@ -19,7 +19,7 @@ const Widget = ({widget, preview, dispatch, lessonId, deleteWidget, selectWidget
      <button type="button" className="btn btn-info sort-up-btn" disabled={widget.sortOrder == 0} onClick={() => sortOrderChanged(widget.id, widget.sortOrder - 1, "up")}>
         <i className="fa fa-arrow-up" aria-hidden="true"></i>
      </button>
-     <button type="button" className="btn btn-info sort-down-btn" disabled={widget.sortOrder > widgetListLength - 1} onClick={() => sortOrderChanged(widget.id, widget.sortOrder + 1, "down")}>
+     <button type="button" className="btn btn-info sort-down-btn" disabled={widget.sortOrder >= widgetListLength - 1} onClick={() => sortOrderChanged(widget.id, widget.sortOrder + 1, "down")}>
         <i className="fa fa-arrow-down" aria-hidden="true"></i>
      </button>
       <select className="form-control col-2 select-widget" value={widget.widgetType} onChange={() => selectWidgetType(widget.id, selectElement.value)} ref={node => selectElement = node}>

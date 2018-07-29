@@ -132,8 +132,15 @@ export const widgetReducer = (state = {}, action) => {
     case constants.FIND_ALL_WIDGETS:
         newState = Object.assign({}, state)
         newState.widgets = action.widgets
+        let index = 0;
         newState.widgets.sort(function(a, b) {
-                return a.sortOrder - b.sortOrder; })
+            return a.sortOrder - b.sortOrder; })
+
+        newState.widgets.map(widget => {
+            widget.sortOrder = index;
+            index ++;
+        })
+        console.log(newState);
         return newState
 
     case constants.DELETE_WIDGET:
