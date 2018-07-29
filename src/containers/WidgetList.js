@@ -19,7 +19,6 @@ class WidgetList extends Component {
     this.props.widgets.sort(function(a, b) {
         return a.sortOrder - b.sortOrder;
     });
-    console.log(this.props.widgets);
     return(
       <div className="widget-box">
         <h3 className="widgets-title">There are {this.props.widgets.length} widgets</h3>

@@ -2,8 +2,10 @@
 //   'https://webdev-summer2-xli.herokuapp.com/api/lesson';
 // const WIDGET_CREATE_URL = 
 // 'https://webdev-summer2-xli.herokuapp.com/api/course/courseId/module/moduleId/lesson';
+// const WIDGET_API_URL =
+//   'http://localhost:8080/';
 const WIDGET_API_URL =
-  'http://localhost:8080/';
+  'https://webdev-summer2-xli.herokuapp.com/';
 
 let _singleton = Symbol();
 export default class WidgetService {
