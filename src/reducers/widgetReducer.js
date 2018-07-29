@@ -1,5 +1,7 @@
 import * as constants from "../constants/index"
+import WidgetService from "../services/WidgetServiceClient"
 
+let widgetService = WidgetService.instance;
 export const widgetReducer = (state = {}, action) => {
   let newState;
   let newWidgets;
@@ -121,16 +123,11 @@ export const widgetReducer = (state = {}, action) => {
     case constants.SAVE:
         newState = Object.assign({}, state)
         state.widgets.map(widget => {
-            fetch('http://localhost:8080/api/lesson/' + action.lessonId +'/widget', {
-                method: 'post',
-                body: JSON.stringify(widget),
-                headers: {
-                  'content-type': 'application/json'}
-              })
-      })
+            widgetService.saveWidget(action.lessonId, widget)
+        })
         newState.widgets = state.widgets;
 
-      return newState
+        return newState
 
     case constants.FIND_ALL_WIDGETS:
         newState = Object.assign({}, state)

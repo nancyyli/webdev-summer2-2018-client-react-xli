@@ -1,5 +1,7 @@
 import * as constants from "../constants/index"
+import WidgetService from "../services/WidgetServiceClient"
 
+let widgetService = WidgetService.instance;
 export const textChanged = (dispatch, widgetId, newText) => (
   dispatch({
     type: constants.TEXT_CHANGED,
@@ -57,17 +59,14 @@ export const selectWidgetType = (dispatch, widgetId, newType) => {
       })
 }
 export const findAllWidgets = (dispatch, lessonId) => {
-  fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget')
-    .then(response => (response.json()))
+    widgetService.findAllWidgets(lessonId)
     .then(widgets => dispatch({
       type: constants.FIND_ALL_WIDGETS,
       widgets: widgets }))
 }
 
 export const deleteWidget = (dispatch, widgetId, lessonId) => {
-    fetch('http://localhost:8080/api/widget/' + widgetId, {
-        method: 'delete'
-    });
+    widgetService.deleteWidget(widgetId);
     dispatch({
         type: constants.DELETE_WIDGET,
         widgetId: widgetId
@@ -86,7 +85,7 @@ export const sortOrderChanged = (dispatch, widgetId, sortOrder, direction) => {
 export const addWidget = dispatch => (
   dispatch({type: constants.ADD_WIDGET})
 )
-export const save = (dispatch, lessonId, sortOrder) => (
+export const save = (dispatch, lessonId) => (
   dispatch({
       type: constants.SAVE,
       lessonId: lessonId})
